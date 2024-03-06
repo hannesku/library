@@ -21,7 +21,14 @@ public class GetAuthorController {
 
     @GetMapping
     public ResponseEntity<List<Author>> getAll() {
-        return new ResponseEntity<>(authorRepository.findAll(), HttpStatus.OK);
+
+        List<Author> authors = authorRepository.findAll();
+
+        if(authors.size() == 0) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(authors, HttpStatus.OK);
     }
 
     @GetMapping("/lastname/{lastName}")
@@ -29,5 +36,4 @@ public class GetAuthorController {
             @PathVariable String lastName) {
         return new ResponseEntity<>(authorRepository.findByLastName(lastName), HttpStatus.OK);
     }
-
 }

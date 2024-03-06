@@ -4,8 +4,6 @@ import at.codersbay.libraryapp.api.author.Author;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-
-
 import java.util.Set;
 
 @Entity
@@ -28,9 +26,8 @@ public class Book {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, unique = false)
+    @Column(nullable = false, unique = true)
     private String isbn;
-
 
     @ManyToMany()
     @JoinTable(
@@ -38,6 +35,9 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors;
+
+    @Column(nullable = false)
+    private boolean available = true;
 
     public long getId() {
         return id;
@@ -69,5 +69,13 @@ public class Book {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }
