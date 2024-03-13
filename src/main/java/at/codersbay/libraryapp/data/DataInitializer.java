@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class DataInitializer {
@@ -26,6 +27,13 @@ public class DataInitializer {
 
 
     public void importBooks() {
+
+        List<Book> books = this.bookRepository.findAll();
+
+        if(books.size() > 0) {
+            return;
+        }
+
         Author rowling = new Author();
         rowling.setFirstName("J.K");
         rowling.setLastName("Rowling");
