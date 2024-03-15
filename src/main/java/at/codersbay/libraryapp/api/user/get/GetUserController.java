@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,6 +21,12 @@ public class GetUserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @GetMapping("/")
+    public ResponseEntity<List<User>> getAllUsers() {
+    List<User> allUsers = this.userRepository.findAll();
+    return ResponseEntity.ok(allUsers);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById (
@@ -28,6 +37,10 @@ public class GetUserController {
         if(!optionalUser.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
+
+        User user = optionalUser.get();
+
+        return ResponseEntity.ok(user);
 
     }
 
