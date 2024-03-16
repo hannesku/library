@@ -74,9 +74,23 @@ public class DataInitializer {
 
         bookRepository.save(potter3);
 
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(potter3.getTitle());
+        builder.append(" = ");
+        builder.append(potter4.getTitle());
+        builder.append(": ");
+        builder.append(potter3.equals(potter4));
+        builder.append("\n");
+        builder.toString();
+
         System.out.println(potter3.getTitle() + " = " + potter4.getTitle() + ": " + potter3.equals(potter4));
+
+
+
         System.out.println("HashCode von " + potter3.getTitle() + ": " + potter3.hashCode());
         System.out.println("HashCode von " + potter4.getTitle() + ": " + potter4.hashCode());
+
 
 
     }

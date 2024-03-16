@@ -18,10 +18,22 @@ public class Book {
             return false;
         } else if (!(obj instanceof Book)) {
             return false;
-        } else if (((Book) obj).isbn.equals(this.isbn)) {
+        }
+
+//        else if (((Book) obj).isbn.equals(this.isbn)) {
+//            return true;
+//        } else return false;
+
+
+        Book otherBook = (Book) obj;
+
+        if (this.isbn != null && this.isbn.equals(otherBook.getIsbn())) {
             return true;
-        } else return false;
+        }
+        return false;
     }
+
+
 
     @Override
     public int hashCode() {
