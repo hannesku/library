@@ -33,7 +33,7 @@ public class DeleteUserController {
 
         userRepository.deleteById(id);
 
-        Response response = new Response();
+        UserResponseBody response = new UserResponseBody();
 
         Optional<User> optionalUser = this.userRepository.findById(id);
 
@@ -42,7 +42,7 @@ public class DeleteUserController {
             return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         } else {
             response.addMessage("Der User mit der ID " + id + " wurde gelöscht.");
-            return new ResponseEntity(response, HttpStatus.OK);
+            return new  ResponseEntity<>(response, HttpStatus.OK);
         }
 
     }

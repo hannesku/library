@@ -10,6 +10,29 @@ import java.util.Set;
 @Table(name = "TB_BOOKS")
 public class Book {
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj == null) {
+            return false;
+        } else if (!(obj instanceof Book)) {
+            return false;
+        } else if (((Book) obj).isbn.equals(this.isbn)) {
+            return true;
+        } else return false;
+    }
+
+    @Override
+    public int hashCode() {
+        if (this.getIsbn() == null) {
+            return 0;
+        } else {
+            return this.isbn.hashCode();
+        }
+    }
+
+
     @Id
     @GeneratedValue(generator = "book-sequence-generator")
     @GenericGenerator(

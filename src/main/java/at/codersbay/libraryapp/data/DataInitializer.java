@@ -64,15 +64,19 @@ public class DataInitializer {
         rowling.getBooks().add(potter1);
         rowling.getBooks().add(potter2);
 
+        Book potter4 = new Book();
+        potter4.setTitle("Harry Potter Teil 4");
+        potter4.setIsbn("mnbvcxy1234567890");
+        potter4.setAuthors(new HashSet<>());
+        potter4.getAuthors().add(rowling);
+
         bookRepository.save(potter2);
 
         bookRepository.save(potter3);
 
-
-
-
-
-
+        System.out.println(potter3.getTitle() + " = " + potter4.getTitle() + ": " + potter3.equals(potter4));
+        System.out.println("HashCode von " + potter3.getTitle() + ": " + potter3.hashCode());
+        System.out.println("HashCode von " + potter4.getTitle() + ": " + potter4.hashCode());
 
 
     }

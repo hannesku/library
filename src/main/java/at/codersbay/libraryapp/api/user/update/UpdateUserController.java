@@ -28,16 +28,16 @@ public class UpdateUserController {
         @RequestBody
         UpdateUserDTO updateUserDTO) {
 
-        List<User> allUsers = this.userRepository.findAll();
+        // Optional<User> optionalUser = this.userRepository.findByUsername(updateUserDTO.getUsername());
 
 
-        for (User user : allUsers) {
-            if (user.equals(updateUserDTO.getUsername())) {
-                user.setFirstName(updateUserDTO.getFirsName());
-                user.setLastName(updateUserDTO.getLastName());
-                this.userRepository.save(user);
-            }
-        }
+//        for (User user : allUsers) {
+//            if (user.equals(updateUserDTO.getUsername())) {
+//                user.setFirstName(updateUserDTO.getFirsName());
+//                user.setLastName(updateUserDTO.getLastName());
+//                this.userRepository.save(user);
+//            }
+//        }
 
 
         return new ResponseEntity<>(HttpStatus.OK);

@@ -30,7 +30,7 @@ public class GetUserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById (
-            @PathVariable
+            @PathVariable   // Definition des Endpunkts der Rest Schnittstelle
             long id) {
         Optional<User> optionalUser = this.userRepository.findById(id);
 

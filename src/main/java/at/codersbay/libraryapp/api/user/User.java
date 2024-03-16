@@ -1,5 +1,6 @@
 package at.codersbay.libraryapp.api.user;
 
+import at.codersbay.libraryapp.api.books.Book;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -7,6 +8,27 @@ import javax.persistence.*;
 @Entity
 @Table(name="TB_USERS")
 public class User {
+
+    @Override
+    public boolean equals (Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj == null) {
+            return false;
+        } else if (!(obj instanceof User)) {
+            return false;
+        } else if ((this.getUsername().toLowerCase()).equals(((User) obj).getUsername().toLowerCase())) {
+            return true;
+        } else return false;
+    }
+
+    @Override
+    public int hashCode () {
+        if (this.getUsername() == null) {
+            return 0;
+        } else return this.getUsername().toLowerCase().hashCode();
+    }
+
     @Id
     @GeneratedValue(generator = "user-sequence-generator")
     @GenericGenerator(
@@ -20,7 +42,7 @@ public class User {
     )
     private long id;
 
-    @Column()
+    @Column(nullable = false, unique = true)  // der username muss ein uniquer Value sein und darf nicht leer (null) sein!)
     private String username;
 
     @Column()
